@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <style type="text/css" media="screen">
+      .wrap{width:90%;height:60px;margin:0 auto;color:grey;line-height:60px;}
+      .info{float:right;margin-top:20px;}
+      .list,.list-users{width: 90%;margin:0 auto;}
+      table {width: 100%;text-indent:10px;}
+      table th{border:1px solid grey;height:40px;}
+      table td{border:1px solid grey;height:60px;}
+      table img{height: 60px;width: 60px;}
+      .M-box span,.U-box span,.M-box a,.U-box a{border:1px solid gray;width: 30px;height: 30px;margin:1px;
+        display:inline-block;text-align:center;line-height:30px;}
+      .M-box,.U-box{float:right;margin-top:30px;}
+      .M-box .active,.U-box .active{background:#5bc0de;color:white;}
+  </style>
+</head>
+<body>
+<!-- 职位模态框 -->
+<div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="width:140%">
+    <div class="modal-header">
+    </div>
+   <div class="list">
+      <table>
+          <thead>
+              <tr>
+              <th>序号</th>
+               <th>公司logo</th>
+                <th>职位名称</th>
+                <th>公司名称</th>
+                 <th>工作经验</th>
+                  <th>职位类型</th>
+                   <th>工作地点</th>
+                    <th>职位薪资</th>
+                      <th>操作</th>
+                  </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+      </table>
+  <div class="modal-footer">
+    <div class="M-box"></div>
+
+
+    </div>
+
+</div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 登录到模态框 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">登录</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">用户名</label>
+            <input type="text" class="form-control" id="lo_username" placeholder="请输入用户名">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">密码</label>
+           <input type="password" class="form-control" id="lo_password" placeholder="请输入密码">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" id="login">登录</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 注册的模态框 -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">注册</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">用户名</label>
+            <input type="text" class="form-control" id="re_username" placeholder="请输入用户名">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">密码</label>
+             <input type="password" class="form-control" id="re_password" placeholder="请输入密码">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">确认密码</label>
+             <input type="password" class="form-control" id="re_confirm" placeholder="请再次输入密码">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">邮箱</label>
+             <input type="text" class="form-control" id="email" placeholder="请输入e-mail地址">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" id="register">注册</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 职位管理 -->
+
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">职位信息</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">公司logo</label>
+            <input type="file" class="form-control" id="logo" placeholder="请输入用户名">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">职位名称</label>
+             <input type="text" class="form-control" id="position" placeholder="请输入职位名">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">公司名称</label>
+             <input type="text" class="form-control" id="company" placeholder="请输入公司名称">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">工作经验</label>
+             <input type="text" class="form-control" id="experience" placeholder="请输入工作经验">
+          </div>
+           <div class="form-group">
+            <label for="message-text" class="control-label">职位类型</label>
+             <input type="text" class="form-control" id="type" placeholder="请输入职位类型">
+          </div>
+           <div class="form-group">
+            <label for="message-text" class="control-label">工作地点</label>
+             <input type="text" class="form-control" id="address" placeholder="请输入工作地点">
+          </div>
+           <div class="form-group">
+            <label for="message-text" class="control-label">岗位薪资</label>
+             <input type="text" class="form-control" id="salary" placeholder="请输入岗位薪资">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" id="add">提交</button>
+         <button  type="button" class="btn btn-success" id="up" style="display:none">修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- 首页的导航栏 -->
+<nav class=" navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">拉勾网管理系统</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav " role="tablist" >
+
+  <li role="presentation" class="index"><a href="#home"  aria-controls="home" role="tab" data-toggle="tab">首页</a></li>
+    <li role="presentation" class="position"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab" >职位管理</a></li>
+
+    <li role="presentation" class="user"><a href="#users" aria-controls="users" role="tab" data-toggle="tab" >用户管理</a></li>
+      </ul>
+
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="l1"><a href="#"  data-toggle="modal" data-target="#exampleModal" class="users">登录
+
+
+
+        </a></li>
+        <li class="l2">
+          <a  data-toggle="modal" data-target="#exampleModal2" href="#"  role="button" aria-haspopup="true" aria-expanded="false" id="myModal">注册 </a>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div>
+
+
+<!-- 分页标签类容 -->
+ <div class="tab-content">
+    <div role="tabpanel" class="tab-pane " id="home">用户名: fuwei 密码：123</div>
+    <div role="tabpanel" class="tab-pane " id="profile">
+
+     <div class="wrap">
+   <span>职位管理</span>
+    <button type="button" class="btn btn-info info" data-toggle="modal" data-target="#exampleModal3" href="#"  role="button" aria-haspopup="true" aria-expanded="false" id="add_po">添加</button>
+     </div>
+    <div class="list">
+      <table>
+          <thead>
+              <tr>
+              <th>序号</th>
+               <th>公司logo</th>
+                <th>职位名称</th>
+                <th>公司名称</th>
+                 <th>工作经验</th>
+                  <th>职位类型</th>
+                   <th>工作地点</th>
+                    <th>职位薪资</th>
+                      <th>操作</th>
+                  </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+      </table>
+
+    <div class="M-box"></div>
+
+
+    </div>
+
+
+
+
+
+    </div>
+     <div role="tabpanel" class="tab-pane " id="users">
+
+<div class="wrap">
+   <span>用户管理</span>
+
+     </div>
+  <div class="list-users">
+      <table>
+          <thead>
+              <tr>
+              <th>序号</th>
+               <th>用户名</th>
+                <th>密码</th>
+                <th>邮箱</th>
+
+                      <th>操作</th>
+                  </tr>
+          </thead>
+          <tbody>
+
+
+          </tbody>
+      </table>
+
+    <div class="U-box"></div>
+
+
+    </div>
+
+
+     </div>
+
+  </div>
+
+</div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="pages/jquery.pagination.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="pages/artTamplate.js"></script>
+
+<script  type="text/javascript">
+// history.pushstate
+// history.popstate
+
+//试一试利用hash值记录页面
+
+$(".user").on("click",function(event) {
+  location="#users"
+  location.reload()
+});
+$(".position").on("click",function(event) {
+   location="#profile"
+location.reload()
+ });
+$(".index").on("click",function(event) {
+   location="#home"
+
+ });
+if(location.hash==="#users"){
+  $("#home").removeClass("active");
+  $("#profile").removeClass("active");
+  $("#users").addClass('active');
+  $(".index").removeClass("active");
+  $(".position").removeClass("active");
+  $(".user").addClass('active');
+
+
+}
+
+if(location.hash==="#page"+localStorage.index||location.hash==="#profile"){
+  $("#home").removeClass("active");
+  $("#profile").addClass("active");
+  $("#users").removeClass('active');
+  $(".index").removeClass("active");
+  $(".position").addClass("active");
+  $(".user").removeClass('active');
+
+}
+if(location.hash==="#home"){
+  $("#home").addClass("active");
+  $("#profile").removeClass("active");
+  $("#users").removeClass('active');
+  $(".index").addClass("active");
+  $(".position").removeClass("active");
+  $(".user").removeClass('active');
+
+}
+
+//用户注册
+var $re_username = $("#re_username");
+var $re_password = $("#re_password");
+var $email = $("#email");
+var $re_confirm = $("#re_confirm");
+var $register = $("#register");
+
+
+
+
+//验证用户名是否存在
+ var flag = false;
+ $re_username.on("blur",checkUser)
+function checkUser(){
+
+    if(!$re_username.val().trim()){
+        alert("用户名不能为空");
+        return;
+
+    }
+    $.post("/check/username",{username:$re_username.val().trim()},function(data){
+
+
+    }).done(function(data){
+
+           if(data.code==0){
+
+            flag = true;
+
+           }else{
+            flag = false;
+             console.log(data.msg)
+             return;
+           }
+
+    })
+
+
+
+}
+
+//验证密码是否一致
+$re_confirm.on("blur",checkPass)
+
+function checkPass(){
+ if(!$re_password.val().trim()){
+    console.log("密码不能为空");
+    return false;
+ }
+   if($re_password.val().trim()===$re_confirm.val().trim()){
+    return true;
+   }else{
+    alert("两次密码输入不一致");
+    return false;
+   }
+
+}
+
+
+//验证邮箱是否格式正确
+$email.on("blur",checkMail)
+function checkMail(){
+     var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+ if(!$email.val().trim()){
+    console.log("邮箱不能为空");
+    return false;
+ }
+
+if(!reg.test($email.val().trim()))
+{
+   console.log("请输入正确到邮箱格式")
+   return false;
+}else{
+    return true;
+}
+
+
+}
+
+//实现注册
+$register.click(function(event) {
+    event.preventDefault()
+
+    if(checkPass()&&checkMail()&&flag){
+        $.post("/register",{username:$re_username.val().trim(),password:$re_confirm.val().trim(),email:$email.val().trim()},function(){
+            console.log("注册成功");
+           $(".close").click();
+        })
+    }
+});
+
+//实现在登录
+$lo_username = $("#lo_username");
+$lo_password=$("#lo_password");
+$login = $("#login");
+
+$login.click(function(event) {
+    event.preventDefault();
+$.post("/login",{username:$lo_username.val().trim(),password:$lo_password.val().trim()},function(data){
+   if(data.code===0){
+
+    localStorage.username = data.doc;
+    $(".l1").html(`<a role="button">欢迎回来：${localStorage.username}</a>`)
+    $(".l2").html("<a role='button'>退出</a>");
+    $(".close").click();
+    location="#home";
+      location.reload()
+   }
+
+})
+
+
+});
+
+//存储用户名
+if(localStorage.username){
+
+    $(".l1").html(`<a role="button">欢迎回来：${localStorage.username}</a>`)
+    $(".l2").html("<a role='button'>退出</a>");
+
+  $(".l2 a").click(function(){
+    console.log(this);
+    localStorage.clear();
+
+     location.reload();
+  })
+
+
+//向职位表中添加数据(图片)
+var params = {};
+var obj = {};
+$("#logo").on("change",function(){
+   var file = this.files[0];
+  if(file.type==="image/jpeg"||file.type==="image/png"){
+     var form = new FormData();
+     form.append("upload",file);
+     $.ajax({
+       url:'/img',
+       type:'POST',
+       dataType:'json',
+       data: form,
+       contentType:false,
+       processData:false
+     })
+     .done(function(data) {
+          params.logo = data.img
+
+  })
+}
+
+})
+
+//点开对应到用户职位
+
+if(location.hash==="#users"){
+
+
+         $(".list-users").delegate('.extend', 'click', function(event){
+       var users = $(this).parent().parent().find("td").eq(1).text();
+          localStorage.users = users
+           load(users);
+
+
+    })
+
+
+  }
+
+
+
+
+
+//添加和实时刷新position数据
+function load(usersname){
+
+
+$.post("/api/position",{username:usersname,index:localStorage.index,index2:localStorage.index2},function(data){
+
+localStorage.len =data.len ;
+localStorage.len2 =data.len2 ;
+
+
+ localStorage.num = data.msg;
+ localStorage.num2 = data.msg2;
+
+  var html =  template("template",data)
+       $(".list tbody").html(html);
+
+
+
+ var txt =  template("u_temp",data)
+
+       $(".list-users tbody").html(txt);
+})
+
+
+
+}
+
+
+//分页来咯
+
+//分页插件
+
+$('.M-box').pagination({
+      pageCount:Math.ceil(localStorage.len/5),
+      showData:5,
+     current:localStorage.num,
+    callback:function(index){
+      $(".now").text(index);
+     localStorage.index = index;
+
+
+ if(location.hash==="#users"){
+ load(localStorage.users)
+}else{load(localStorage.username)}
+
+    }
+},function(api){
+    $('.now').text(api.getCurrent());
+
+});
+
+$('.U-box').pagination({
+      pageCount:Math.ceil(localStorage.len2/5),
+      showData:5,
+     current:localStorage.num2,
+    callback:function(index){
+      $(".now").text(index);
+     localStorage.index2 = index;
+
+load(localStorage.username)
+
+
+}
+},function(api){
+    $('.now').text(api.getCurrent());
+
+});
+
+
+
+
+
+
+
+  load(localStorage.username);
+
+console.log(localStorage.len)
+
+
+$("#add").click(function(event){
+  event.preventDefault();
+
+
+
+
+  var position = $("#position").val().trim(),
+       company = $("#company").val().trim(),
+       experience = $("#experience").val().trim(),
+       type = $("#type").val().trim(),
+       address = $("#address").val().trim(),
+       salary = $("#salary").val().trim();
+
+  if(!position||!company||!experience||!type||!address||!salary){
+         alert("不能输入空消息");
+         return;
+
+  }else{
+      params.username = localStorage.username;
+      params.position = position;
+      params.company = company;
+      params.experience = experience;
+      params.type = type;
+      params.address = address;
+      params.salary = salary;
+      $.post("/position",params,function(data){
+
+
+      var html =  template("template",{list:[data.msg]})
+      if($("tbody tr").length<5){
+
+       $("tbody").append(html);
+      }
+
+      }).done(function(){
+        if(localStorage.len%5===0){
+           localStorage.len++;
+          location.reload()
+        }
+        load(localStorage.username);
+
+
+       $(".close").click();
+
+      })
+
+  }
+
+
+})
+
+//替换按钮
+$("#add_po").click(function(event) {
+$("#add").show();
+ $("#up").hide();
+
+$("#position").val("");
+$("#company").val("");
+$("#experience").val("");
+$("#type").val("");
+$("#address").val("");
+$("#salary").val("");
+
+});
+
+
+//删除修改操作
+
+$("tbody").delegate("a","click",function(){
+       if(this.className==="delete"){
+        if(location.hash==="#users"){
+          var that  = this
+             $.post("/users/delete",{_id:this.dataset.id},function(data){
+
+                 alert(data.msg)
+             }).done(function(){
+                  $(that).parent().parent().remove();
+                  if(localStorage.len2%5===1){
+                    localStorage.len2--;
+                  localStorage.index2--;
+
+                  }
+                      load(localStorage.username);
+
+                  location.reload()
+             });
+
+        }else{
+              var that  = this
+             $.post("/delete",{_id:this.dataset.id},function(data){
+
+                 alert(data.msg)
+             }).done(function(){
+                  $(that).parent().parent().remove();
+
+                    if(localStorage.len%5===1)
+                      {localStorage.len--;
+                  localStorage.index--;
+                  location.reload()
+                  }
+
+
+                   load(localStorage.username);
+
+             });
+
+}
+
+
+       }
+
+ //修改操作将原有信息全部添加到修改栏中
+ if(this.className==="update"){
+      $("#add").hide();
+       $("#up").show();
+       obj.that = this;
+
+      var td = $(this).parents("tr").find('td');
+      params.logo = td.find("img").attr("src");
+      params.position = td.eq(2).text();
+       params.company = td.eq(3).text();
+       params.experience = td.eq(4).text();
+       params.type = td.eq(5).text();
+       params.address =  td.eq(6).text();
+       params.salary =  td.eq(7).text();
+       params._id = this.dataset.id;
+
+
+$("#position").val(params.position);
+$("#company").val(params.company);
+$("#experience").val(params.experience);
+$("#type").val(params.type);
+$("#address").val(params.address);
+$("#salary").val(params.salary);
+
+ }
+
+})
+
+//点击修改按钮实现修改
+$("#up").click(function(event) {
+   event.preventDefault();
+   params.position = $("#position").val().trim();
+   params.company = $("#company").val().trim();
+   params.experience = $("#experience").val().trim();
+   params.type = $("#type").val().trim();
+   params.address = $("#address").val().trim();
+   params.salary = $("#salary").val().trim();
+
+
+ $.post("/update",params,function(data){
+
+//dom操作实现实时修改
+var td = $(obj.that).parents("tr").find('td');
+    td.find("img").attr("src",data.msg.logo);
+    td.eq(2).text(data.msg.position);
+    td.eq(3).text(data.msg.company);
+    td.eq(4).text(data.msg.experience);
+    td.eq(5).text(data.msg.type);
+    td.eq(6).text(data.msg.address);
+     td.eq(7).text(data.msg.salary);
+
+    $(".close").click();
+   });
+});
+
+}else{
+  $("#profile").html("请登录后查看列表")
+
+
+}
+</script>
+
+<script type="text/html" id="template">
+
+{{each list as element index}}
+               <tr>
+                  <td>{{(index+1)}}</td>
+                  <td><img src="{{element.logo}}" alt=""></td>
+                  <td>{{element.position}}</td>
+                  <td>{{element.company}}</td>
+                   <td>{{element.experience}}</td>
+                   <td>{{element.type}}</td>
+                   <td>{{element.address}}</td>
+                   <td>{{element.salary}}</td>
+
+          <td><a class="update" data-toggle="modal" data-target="#exampleModal3" style="cursor: pointer;"  data-id="{{element._id}}">修改</a>/<a href="javascript:void(0)" class="delete" data-id="{{element._id}}">删除</a></td>
+              </tr>
+  {{/each}}
+
+
+</script>
+<script type="text/html" id="u_temp">
+  {{each users as element index}}
+ <tr>
+                  <td>{{(index+1)}}</td>
+
+                  <td>{{element.username}}</td>
+                  <td>{{element.password}}</td>
+                   <td>{{element.mail}}</td>
+                 <td><a href="#users" data-toggle="modal" data-target="#exampleModal4" class="extend">展开</a>/<a href="javascript:void(0)" class="delete" data-id="{{element._id}}">删除</a></td>
+              </tr>
+
+{{/each}}
+
+
+
+</script>
+</body>
+</html>
